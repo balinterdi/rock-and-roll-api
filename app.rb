@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sequel'
 require './config/initializer'
+require './config/cors'
 require 'json'
 
 get '/artists.json' do
