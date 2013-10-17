@@ -15,3 +15,12 @@ get '/artists.json' do
   end.to_json
 end
 
+post '/artists.json' do
+  artist_name = params[:name]
+  attributes = { name: artist_name }
+  artists = DB[:artists]
+  artist_id = artists.insert(name: artist_name)
+  status 201 # Created
+  { artist: attributes.merge(id: artist_id) }.to_json
+end
+
