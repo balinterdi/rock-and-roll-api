@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sequel'
 require './config/initializer'
 require 'json'
+require 'rack/cors'
 
 class RockAndRollAPI < Sinatra::Base
 
