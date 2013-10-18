@@ -37,7 +37,7 @@ class RockAndRollAPI < Sinatra::Base
     artist_name = params[:name]
     attributes = { name: artist_name }
     artists = DB[:artists]
-    artist_id = artists.insert(name: artist_name)
+    artist_id = artists.insert(attributes)
     status 201 # Created
     { artist: attributes.merge(id: artist_id) }.to_json
   end
@@ -55,6 +55,15 @@ class RockAndRollAPI < Sinatra::Base
       name: artist[:name],
       songs: songs_for_artist(artist)
     }.to_json
+  end
+
+  post '/songs.json' do
+    puts params
+    songs = DB[:songs]
+    attributes = { title: params[:title], artist_id: params[:artist_id], rating: 0 }
+    song_id = songs.insert(attributes)
+    status 201
+    { song: attributes.merge(id: song_id) }.to_json
   end
 
 end
