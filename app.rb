@@ -15,10 +15,8 @@ class RockAndRollAPI < Sinatra::Base
 
   def songs_for_artist(artist)
     artist_songs_records = DB[:songs].where(artist_id: artist[:id])
-    [].tap do |songs|
-      artist_songs_records.each do |song|
-        songs << { id: song[:id], title: song[:title], rating: song[:rating] }
-      end
+    artist_songs_records.map do |song|
+      { id: song[:id], title: song[:title], rating: song[:rating] }
     end
   end
 
