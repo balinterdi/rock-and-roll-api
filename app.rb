@@ -11,13 +11,23 @@ class RockAndRollAPI < Sinatra::Base
       resource '*'
     end
   end
+
+  def songs_for_artist(artist)
+    artist_songs_records = DB[:songs].where(artist_id: artist[:id])
+    [].tap do |songs|
+      artist_songs_records.each do |song|
+        songs << { id: song[:id], title: song[:title], rating: song[:rating] }
+      end
+    end
+  end
+
   get '/artists.json' do
     artists = DB[:artists]
     status 200
     headers({ "Content-Type" =>"application/json" })
     [].tap do |json_response|
       artists.each do |artist|
-        json_response << { id: artist[:id], name: artist[:name] }
+        json_response << { id: artist[:id], name: artist[:name], songs: songs_for_artist(artist) }
       end
     end.to_json
   end
@@ -39,15 +49,10 @@ class RockAndRollAPI < Sinatra::Base
       artist_slug = name_parts.join('-')
       artist_slug == params[:slug]
     end
-    artist_songs_records = DB[:songs].where(artist_id: artist[:id])
-    artist_songs = [].tap do |songs|
-      artist_songs_records.each do |song|
-        songs << { id: song[:id], title: song[:title], rating: song[:rating] }
-      end
-    end
+    status 200
     {
       name: artist[:name],
-      songs: artist_songs
+      songs: songs_for_artist(artist)
     }.to_json
   end
 
