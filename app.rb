@@ -20,7 +20,7 @@ class RockAndRollAPI < Sinatra::Base
     end
   end
 
-  get '/artists.json' do
+  get '/artists' do
     artists = DB[:artists]
     status 200
     headers({ "Content-Type" =>"application/json" })
@@ -31,7 +31,7 @@ class RockAndRollAPI < Sinatra::Base
     end.to_json
   end
 
-  post '/artists.json' do
+  post '/artists' do
     artist_name = params[:name]
     attributes = { name: artist_name }
     artists = DB[:artists]
@@ -40,7 +40,7 @@ class RockAndRollAPI < Sinatra::Base
     { artist: attributes.merge(id: artist_id) }.to_json
   end
 
-  get '/artists/:slug.json' do
+  get '/artists/:slug' do
     artists = DB[:artists]
     artist = artists.detect do |artist|
       name = artist[:name]
@@ -55,7 +55,7 @@ class RockAndRollAPI < Sinatra::Base
     }.to_json
   end
 
-  post '/songs.json' do
+  post '/songs' do
     puts params
     songs = DB[:songs]
     attributes = { title: params[:title], artist_id: params[:artist_id], rating: 0 }
