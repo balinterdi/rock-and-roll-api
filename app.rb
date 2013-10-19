@@ -50,6 +50,7 @@ class RockAndRollAPI < Sinatra::Base
     end
     status 200
     {
+      id: artist[:id],
       name: artist[:name],
       songs: songs_for_artist(artist)
     }.to_json
