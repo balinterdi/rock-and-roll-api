@@ -7,3 +7,5 @@ The source code for the client-side application can be found [here](https://gith
 
 You can sign up to [the Ember.js mailing list](http://emberjs.balinterdi.com) to see the screencast series in which I 
 build the app step by step and also get Ember.js related articles, best practices tips and other screencasts.
+
+Copyright (c) 2013 [Balint Erdi](http://balinterdi.com)
