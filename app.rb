@@ -9,7 +9,7 @@ class RockAndRollAPI < Sinatra::Base
   use Rack::Cors do
     allow do
       origins  'localhost:9292'
-      resource '*'
+      resource '*', headers: :any, methods: %i[get post options]
     end
   end
 
