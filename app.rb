@@ -9,7 +9,7 @@ class RockAndRollAPI < Sinatra::Base
   use Rack::Cors do
     allow do
       origins  'localhost:9292'
-      resource '*', headers: :any, methods: %i[get post options]
+      resource '*', headers: :any, methods: %i[get post put options]
     end
   end
 
@@ -70,9 +70,9 @@ class RockAndRollAPI < Sinatra::Base
     attributes.merge(id: song_id).to_json
   end
 
-  put '/songs' do
+  put '/songs/:id' do
     songs = DB[:songs]
-    songs.where(id: params[:id]).update(rating: params[:rating], title: params[:title])
+    songs.where(id: params[:id]).update(rating: params[:rating])
     attributes = songs.where(id: params[:id]).first
 
     status 200
