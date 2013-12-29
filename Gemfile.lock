@@ -12,6 +12,7 @@ GEM
       rack
     rack-protection (1.5.0)
       rack
+    rake (10.1.1)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
@@ -32,6 +33,7 @@ PLATFORMS
 DEPENDENCIES
   pg
   rack-cors
+  rake
   rerun
   sequel
   sinatra
