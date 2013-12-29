@@ -1,1 +1,1 @@
-DB = Sequel.connect("sqlite://db/rock-and-roll.db")
+DB = Sequel.connect(ENV['DATABASE_URL'])

@@ -4,6 +4,6 @@ ruby '2.0.0'
 
 gem 'sinatra'
 gem 'sequel'
-gem 'sqlite3'
+gem 'pg'
 gem 'rack-cors'
 gem 'rerun'
