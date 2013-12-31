@@ -20,6 +20,12 @@ class RockAndRollAPI < Sinatra::Base
     end
   end
 
+  get '/' do
+    status 200
+    headers({ "Content-Type" =>"application/json" })
+    { name: "Rock & Roll API", version: '0.1' }.to_json
+  end
+
   get '/artists' do
     artists = DB[:artists]
     status 200
