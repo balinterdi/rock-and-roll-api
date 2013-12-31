@@ -21,9 +21,7 @@ class RockAndRollAPI < Sinatra::Base
   end
 
   get '/' do
-    status 200
-    headers({ "Content-Type" =>"application/json" })
-    { name: "Rock & Roll API", version: '0.1' }.to_json
+    [200, { "Content-Type" =>"application/json" }, { name: "Rock & Roll API", version: '0.1' }.to_json]
   end
 
   get '/artists' do
