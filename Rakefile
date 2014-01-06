@@ -18,6 +18,15 @@ namespace :db do
     end
   end
 
+  desc "Drop tables"
+  task :drop_tables do
+    DB.run("drop table artists")
+    DB.run("drop table songs")
+  end
+
+  desc "Reset database to initial state"
+  task :reset => %i[drop_tables create_tables seed]
+
   desc "Insert sample artists and songs"
   task :seed do
     seed_data = {
