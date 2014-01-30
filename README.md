@@ -15,6 +15,8 @@ A simple REST API written for the Ember.js application I'm building in my “Bui
 
 No problem, the API is available at http://rock-and-roll-api.herokuapp.com/. Just direct your client application to that URL. The ["official" client](https://github.com/balinterdi/rock-and-roll) is set up to do that, so once you clone it, it should just work.
 
+The database will be reset (and reseeded with a handful of artists and songs) each night, at 01:00 UTC, so you have a fresh database to start the day with.
+
 The source code for the client-side application can be found [here](https://github.com/balinterdi/rock-and-roll).
 
 ### Want more Ember stuff?
