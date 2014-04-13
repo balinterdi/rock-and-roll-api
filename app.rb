@@ -20,6 +20,16 @@ class RockAndRollAPI < Sinatra::Base
     end
   end
 
+  def artist_for_slug(slug)
+    artists = DB[:artists]
+    artists.detect do |artist|
+      name = artist[:name]
+      name_parts = name.split(/\s+/).map(&:downcase)
+      artist_slug = name_parts.join('-')
+      artist_slug == slug
+    end
+  end
+
   get '/' do
     [200, { "Content-Type" =>"application/json" }, { name: "Rock & Roll API", version: '0.1' }.to_json]
   end
@@ -47,13 +57,7 @@ class RockAndRollAPI < Sinatra::Base
   end
 
   get '/artists/:slug' do
-    artists = DB[:artists]
-    artist = artists.detect do |artist|
-      name = artist[:name]
-      name_parts = name.split(/\s+/).map(&:downcase)
-      artist_slug = name_parts.join('-')
-      artist_slug == params[:slug]
-    end
+    artist = artist_for_slug(params[:slug])
 
     status 200
     headers({ "Content-Type" =>"application/json" })
@@ -62,6 +66,14 @@ class RockAndRollAPI < Sinatra::Base
       name: artist[:name],
       songs: songs_for_artist(artist)
     }.to_json
+  end
+
+  get '/artists/:slug/songs' do
+    status 200
+    headers({ "Content-Type" =>"application/json" })
+
+    artist = artist_for_slug(params[:slug])
+    songs_for_artist(artist).to_json
   end
 
   post '/songs' do
