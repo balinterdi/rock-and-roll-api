@@ -7,12 +7,12 @@ A simple REST API written for the Ember.js application I'm building in my “Bui
 
 ### Run locally
 
-1. Run `ruby db/tables.rb` to create the tables in the (sqlite) database.
-2. Run `ruby db/seed.rb` to insert a few artists and songs in the database.
-3. Run `bundle exec rerun 'DATABASE_URL=postgres://localhost/rock-and-roll rackup` in the root folder of the application (where DATABASE_URL points to the database you want to connect to). That will spin up the app on port 9292 that you can check by issuing a request to `http://localhost:9292`. You should see something like: 
+1. Run `bundle exec rake db:create_tables` to create the tables in the (sqlite) database.
+2. Run `bundle exec rake db:seed` to insert a few artists and songs in the database.
+3. Run `bundle exec rerun 'DATABASE_URL=postgres://localhost/rock-and-roll rackup` in the root folder of the application (where DATABASE_URL points to the database you want to connect to). That will spin up the app on port 9292 that you can check by issuing a request to `http://localhost:9292`. You should see something like:
 
     {"name":"Rock & Roll API","version":"0.1"}
-    
+
 If you wish to run it on another port, just append `-p <port>` to the above command.
 
 ### Don't have ruby or don't want to bother?
